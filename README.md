@@ -6,6 +6,8 @@ A public, sanitized case study for an operations dashboard that combines server 
 
 The repository now includes a dependency-free, responsive dashboard demonstration built with semantic HTML, modern CSS, and vanilla JavaScript. It includes synthetic telemetry, accessible navigation, responsive layouts, operational status cards, event triage, managed-system state, audit history, and a working refresh interaction.
 
+It also includes an accessible command palette opened with Ctrl+K, searchable quick actions, a simulated incident lifecycle, clipboard-ready status summaries, and deliberate degraded-state communication.
+
 Open index.html locally to explore it. Every value is fictional and exists only to demonstrate information architecture and interface design.
 
 ## Case-study scope
@@ -39,3 +41,6 @@ Read operations should be separated from administrative actions. Consequential a
 - CSS variables and reusable layout primitives
 - No framework, build step, analytics, cookies, or production dependencies
 - Synthetic data clearly separated from real operational systems
+- Keyboard-driven command palette and searchable operator actions
+- Interactive incident simulation and recovery state
+- Clipboard-ready operational status communication
