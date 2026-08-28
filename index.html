@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Responsive infrastructure operations dashboard concept by David Schunk">
+  <title>Northstar Operations Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+  <div class="classification" role="note">AUTHORIZED OPERATIONS DEMO // SANITIZED DATA</div>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand"><span class="brand-mark">N</span><span><strong>NORTHSTAR</strong><small>OPERATIONS CENTER</small></span></div>
+      <nav>
+        <a class="active" href="#overview" aria-current="page">Overview</a>
+        <a href="#systems">Systems</a><a href="#events">Events</a><a href="#storage">Storage</a><a href="#activity">Audit</a>
+      </nav>
+      <div class="operator"><span class="avatar">DS</span><span><strong>David Schunk</strong><small>Infrastructure Admin</small></span></div>
+    </aside>
+
+    <main id="main">
+      <header class="topbar">
+        <div><p class="eyebrow">INFRASTRUCTURE / OVERVIEW</p><h1>Operations Center</h1></div>
+        <div class="header-actions"><span class="live"><i></i> Live telemetry</span><button id="refresh" type="button">Refresh data</button></div>
+      </header>
+
+      <section class="hero" id="overview">
+        <div><p class="eyebrow">SYSTEM POSTURE</p><h2>All critical services operational</h2><p>Last collection <span id="last-updated">just now</span> · Synthetic demonstration data</p></div>
+        <div class="posture"><strong>99.98%</strong><span>30-day availability</span></div>
+      </section>
+
+      <section class="metric-grid" aria-label="Infrastructure metrics">
+        <article class="metric"><div class="metric-head"><span>HOST CPU</span><b class="good">NOMINAL</b></div><strong><span id="cpu">31</span>%</strong><div class="bar"><i id="cpu-bar" style="width:31%"></i></div><small>16 logical processors</small></article>
+        <article class="metric"><div class="metric-head"><span>MEMORY</span><b>STABLE</b></div><strong><span id="memory">62</span>%</strong><div class="bar"><i id="memory-bar" style="width:62%"></i></div><small>19.8 GB of 32 GB</small></article>
+        <article class="metric"><div class="metric-head"><span>STORAGE</span><b>HEALTHY</b></div><strong>1.72 <em>TB</em></strong><div class="bar"><i style="width:43%"></i></div><small>2.28 TB available</small></article>
+        <article class="metric"><div class="metric-head"><span>BACKUP</span><b class="good">VERIFIED</b></div><strong>03:14</strong><div class="bar"><i style="width:100%"></i></div><small>Restore test: 6 days ago</small></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel" id="systems">
+          <div class="panel-title"><div><p class="eyebrow">SERVICE FABRIC</p><h2>Managed systems</h2></div><span>4 online</span></div>
+          <div class="system-list">
+            <article><i class="status"></i><div><strong>CORE-DC01</strong><small>Identity · DNS · Time</small></div><code>24d 08h</code><b>ONLINE</b></article>
+            <article><i class="status"></i><div><strong>APP-WEB01</strong><small>Operations portal · API</small></div><code>12d 17h</code><b>ONLINE</b></article>
+            <article><i class="status"></i><div><strong>GAME-PROD01</strong><small>FiveM production instance</small></div><code>05d 11h</code><b>ONLINE</b></article>
+            <article><i class="status warning"></i><div><strong>NAS-BACKUP01</strong><small>Backup target · 72% utilized</small></div><code>41d 02h</code><b class="warn">WATCH</b></article>
+          </div>
+        </section>
+
+        <section class="panel" id="events">
+          <div class="panel-title"><div><p class="eyebrow">EVENT TRIAGE</p><h2>Last 24 hours</h2></div><a href="#events">View all</a></div>
+          <div class="event-summary"><div><strong>0</strong><span>Critical</span></div><div><strong>3</strong><span>Warnings</span></div><div><strong>148</strong><span>Informational</span></div></div>
+          <ul class="events"><li><time>04:12</time><span class="dot warn"></span><p><strong>Disk threshold approaching</strong><small>NAS-BACKUP01 · Volume D:</small></p></li><li><time>03:15</time><span class="dot ok"></span><p><strong>Backup validation passed</strong><small>GAME-PROD01 · 42.8 GB</small></p></li><li><time>02:30</time><span class="dot info"></span><p><strong>Scheduled maintenance completed</strong><small>APP-WEB01 · 4 updates</small></p></li></ul>
+        </section>
+
+        <section class="panel wide" id="activity">
+          <div class="panel-title"><div><p class="eyebrow">ACCOUNTABILITY</p><h2>Administrative activity</h2></div><span class="audit-badge">AUDIT ENABLED</span></div>
+          <div class="audit-table" role="table" aria-label="Administrative activity">
+            <div class="row head" role="row"><span>TIME</span><span>OPERATOR</span><span>ACTION</span><span>TARGET</span><span>RESULT</span></div>
+            <div class="row" role="row"><code>04:19:22</code><span>automation.service</span><span>Health snapshot collected</span><strong>ALL SYSTEMS</strong><b>SUCCESS</b></div>
+            <div class="row" role="row"><code>03:15:08</code><span>david.schunk</span><span>Backup restore validated</span><strong>GAME-PROD01</strong><b>SUCCESS</b></div>
+            <div class="row" role="row"><code>02:31:44</code><span>patch.service</span><span>Maintenance window closed</span><strong>APP-WEB01</strong><b>SUCCESS</b></div>
+          </div>
+        </section>
+      </div>
+      <footer>Designed and engineered by <a href="https://www.davidschunk.com">David Schunk</a> · No production systems or data</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Telemetry refreshed</div>
+  <script src="app.js"></script>
+</body>
+</html>
