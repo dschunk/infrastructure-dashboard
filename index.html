@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to dashboard</a>
@@ -26,8 +27,10 @@
     <main id="main">
       <header class="topbar">
         <div><p class="eyebrow">INFRASTRUCTURE / OVERVIEW</p><h1>Operations Center</h1></div>
-        <div class="header-actions"><span class="live"><i></i> Live telemetry</span><button id="refresh" type="button">Refresh data</button></div>
+        <div class="header-actions"><span class="live"><i></i> Live telemetry</span><button id="command" type="button" aria-keyshortcuts="Control+K">Command <kbd>Ctrl K</kbd></button><button id="refresh" type="button">Refresh data</button></div>
       </header>
+
+      <div class="incident-banner" id="incident-banner" role="alert" hidden><strong>SIMULATED INCIDENT</strong><span>GAME-PROD01 is not responding. Synthetic demonstration only.</span><button id="resolve-incident" type="button">Resolve</button></div>
 
       <section class="hero" id="overview">
         <div><p class="eyebrow">SYSTEM POSTURE</p><h2>All critical services operational</h2><p>Last collection <span id="last-updated">just now</span> · Synthetic demonstration data</p></div>
@@ -47,7 +50,7 @@
           <div class="system-list">
             <article><i class="status"></i><div><strong>CORE-DC01</strong><small>Identity · DNS · Time</small></div><code>24d 08h</code><b>ONLINE</b></article>
             <article><i class="status"></i><div><strong>APP-WEB01</strong><small>Operations portal · API</small></div><code>12d 17h</code><b>ONLINE</b></article>
-            <article><i class="status"></i><div><strong>GAME-PROD01</strong><small>FiveM production instance</small></div><code>05d 11h</code><b>ONLINE</b></article>
+            <article id="game-system"><i class="status"></i><div><strong>GAME-PROD01</strong><small>FiveM production instance</small></div><code>05d 11h</code><b class="system-state">ONLINE</b></article>
             <article><i class="status warning"></i><div><strong>NAS-BACKUP01</strong><small>Backup target · 72% utilized</small></div><code>41d 02h</code><b class="warn">WATCH</b></article>
           </div>
         </section>
@@ -72,6 +75,17 @@
     </main>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite">Telemetry refreshed</div>
+  <dialog id="command-palette" aria-labelledby="command-title">
+    <div class="command-head"><div><p class="eyebrow">OPERATOR COMMANDS</p><h2 id="command-title">Quick actions</h2></div><button id="close-command" type="button" aria-label="Close command palette">×</button></div>
+    <label class="command-search"><span>Search commands</span><input id="command-search" type="search" placeholder="Type a command…" autocomplete="off"></label>
+    <div class="command-list" id="command-list">
+      <button type="button" data-command="refresh"><span><strong>Refresh telemetry</strong><small>Generate a new synthetic health snapshot</small></span><kbd>R</kbd></button>
+      <button type="button" data-command="incident"><span><strong>Simulate service incident</strong><small>Demonstrate degraded-state communication</small></span><kbd>I</kbd></button>
+      <button type="button" data-command="copy"><span><strong>Copy status summary</strong><small>Prepare a plain-text operations update</small></span><kbd>C</kbd></button>
+      <a href="https://github.com/dschunk/infrastructure-dashboard" target="_blank" rel="noreferrer"><span><strong>Open source repository</strong><small>Review the HTML, CSS, JavaScript, and documentation</small></span><kbd>↗</kbd></a>
+    </div>
+    <p class="command-foot">Synthetic demonstration · No administrative actions are performed</p>
+  </dialog>
   <script src="app.js"></script>
 </body>
 </html>
