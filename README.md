@@ -2,6 +2,12 @@
 
 A public, sanitized case study for an operations dashboard that combines server health, service status, Windows events, storage, backups, tickets, messages, and administrative audit history.
 
+## Interactive front-end concept
+
+The repository now includes a dependency-free, responsive dashboard demonstration built with semantic HTML, modern CSS, and vanilla JavaScript. It includes synthetic telemetry, accessible navigation, responsive layouts, operational status cards, event triage, managed-system state, audit history, and a working refresh interaction.
+
+Open index.html locally to explore it. Every value is fictional and exists only to demonstrate information architecture and interface design.
+
 ## Case-study scope
 
 - Windows host connectivity, health, disk, and uptime
@@ -24,3 +30,12 @@ flowchart TD
 This repository contains no production source, credentials, addresses, hostnames, server keys, webhooks, or private infrastructure diagrams. A reference implementation will be published only after environment-specific behavior has been separated from reusable components.
 
 Read operations should be separated from administrative actions. Consequential actions require authorization and audit records. Remote operations should use constrained identities, and secrets must be injected at runtime.
+
+## Front-end qualities
+
+- Responsive from desktop command-center layouts to mobile screens
+- Keyboard-accessible skip navigation and semantic landmarks
+- High-contrast status language that does not rely on color alone
+- CSS variables and reusable layout primitives
+- No framework, build step, analytics, cookies, or production dependencies
+- Synthetic data clearly separated from real operational systems
