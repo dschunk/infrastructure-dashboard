@@ -1,5 +1,7 @@
 # Infrastructure Dashboard
 
+> **Personal project notice:** This is a personal, sanitized demonstration project and is not affiliated with, sponsored by, or endorsed by any current or former employer. The repository is intended to contain only fictional/synthetic data and reusable interface ideas—not employer confidential or proprietary information, production configurations, customer data, credentials, or employer work product.
+
 A public, sanitized case study for an operations dashboard that combines server health, service status, Windows events, storage, backups, tickets, messages, and administrative audit history.
 
 ## Interactive front-end concept
