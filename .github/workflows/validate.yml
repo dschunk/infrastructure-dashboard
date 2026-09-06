@@ -1,0 +1,68 @@
+name: Validate dashboard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Check JavaScript syntax
+        run: node --check app.js
+
+      - name: Validate HTML local references
+        shell: python
+        run: |
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit
+
+          failures = []
+
+          class References(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.refs = []
+              def handle_starttag(self, tag, attrs):
+                  values = dict(attrs)
+                  if tag in {'a', 'link'} and values.get('href'):
+                      self.refs.append(values['href'])
+                  if tag in {'img', 'script'} and values.get('src'):
+                      self.refs.append(values['src'])
+
+          page = Path('index.html')
+          parser = References()
+          parser.feed(page.read_text(encoding='utf-8'))
+
+          for raw in parser.refs:
+              if raw.startswith(('http://', 'https://', 'mailto:', 'tel:', '#', 'data:')):
+                  continue
+              path = urlsplit(raw).path
+              if path and not Path(path).exists():
+                  failures.append(f'unresolved local reference: {raw}')
+
+          if failures:
+              raise SystemExit('\n'.join(failures))
+
+          print('Dashboard references validated.')
+
+      - name: Require public project safety files
+        run: |
+          test -f README.md
+          test -f SECURITY.md
+          test -f LICENSE
+          test -f CONTRIBUTING.md
+          test -f .nojekyll
