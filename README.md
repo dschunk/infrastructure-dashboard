@@ -2,47 +2,81 @@
 
 > **Personal project notice:** This is a personal, sanitized demonstration project and is not affiliated with, sponsored by, or endorsed by any current or former employer. The repository is intended to contain only fictional/synthetic data and reusable interface ideas—not employer confidential or proprietary information, production configurations, customer data, credentials, or employer work product.
 
-A public, sanitized case study for an operations dashboard that combines server health, service status, Windows events, storage, backups, tickets, messages, and administrative audit history.
+**Live demo:** https://dschunk.github.io/infrastructure-dashboard/
 
-## Interactive front-end concept
+A public operations-interface case study showing how server health, service status, Windows events, storage, backups, tickets, messages, incidents, and audit history can be presented without turning the screen into a wall of meaningless green boxes.
 
-The repository now includes a dependency-free, responsive dashboard demonstration built with semantic HTML, modern CSS, and vanilla JavaScript. It includes synthetic telemetry, accessible navigation, responsive layouts, operational status cards, event triage, managed-system state, audit history, and a working refresh interaction.
+## What this demonstrates
 
-It also includes an accessible command palette opened with Ctrl+K, searchable quick actions, a simulated incident lifecycle, clipboard-ready status summaries, and deliberate degraded-state communication.
+The repository contains a dependency-free responsive front end built with semantic HTML, modern CSS, and vanilla JavaScript. Every operational value is fictional and exists only to demonstrate information architecture and interface design.
 
-Open index.html locally to explore it. Every value is fictional and exists only to demonstrate information architecture and interface design.
+The demo includes:
+
+- host and service health
+- storage and backup state
+- Windows event triage
+- managed-system status
+- operational audit history
+- responsive desktop/mobile layouts
+- an accessible command palette with `Ctrl+K`
+- searchable quick actions
+- simulated incident lifecycle and recovery state
+- clipboard-ready status summaries
+- deliberate degraded-state communication
+
+Open the live demo or run `index.html` locally. No build step is required.
+
+## Design rules
+
+- **Status must mean something.** A green card should represent a verified condition, not decoration.
+- **Failure must be visible.** Degraded and unknown states deserve first-class presentation.
+- **Operators need context.** Ownership, timestamps, last-known state, and audit history matter as much as the headline metric.
+- **Do not rely on color alone.** Status language, icons, labels, and hierarchy should remain understandable without color perception.
+- **Read and change are different operations.** Visibility should not imply permission to perform consequential actions.
+- **Synthetic means synthetic.** Public demonstrations should never leak real infrastructure details just to look authentic.
 
 ## Case-study scope
 
 - Windows host connectivity, health, disk, and uptime
-- Multi-instance service status
-- Event and process visibility
-- Storage and backup state
-- Internal tickets and staff messages
-- Role-based access and operational audit history
+- multi-instance service state
+- events and process visibility
+- storage and backup state
+- internal tickets and staff messages
+- role-aware operational concepts
+- administrative audit history
 
-~~~mermaid
+The conceptual production architecture that inspired the case study looks like this:
+
+```mermaid
 flowchart TD
-    U[Authorized operator] --> W[ASP.NET Core dashboard]
+    U[Authorized operator] --> W[Operations interface]
     W --> A[Authentication and roles]
-    W --> R[Remote management]
+    W --> R[Constrained remote management]
     W --> D[Operational data]
     R --> H[Windows hosts and services]
-    W --> N[Alerts]
-~~~
+    W --> N[Alerts and incident communication]
+    W --> L[Audit trail]
+```
 
-This repository contains no production source, credentials, addresses, hostnames, server keys, webhooks, or private infrastructure diagrams. A reference implementation will be published only after environment-specific behavior has been separated from reusable components.
+This public repository contains **no** production source, credentials, addresses, hostnames, server keys, webhooks, private infrastructure diagrams, or real telemetry.
 
-Read operations should be separated from administrative actions. Consequential actions require authorization and audit records. Remote operations should use constrained identities, and secrets must be injected at runtime.
+A production implementation should keep read operations separate from administrative actions. Consequential operations require explicit authorization and audit records; remote management should use constrained identities; secrets should be injected at runtime rather than stored in source.
 
 ## Front-end qualities
 
-- Responsive from desktop command-center layouts to mobile screens
-- Keyboard-accessible skip navigation and semantic landmarks
-- High-contrast status language that does not rely on color alone
-- CSS variables and reusable layout primitives
-- No framework, build step, analytics, cookies, or production dependencies
-- Synthetic data clearly separated from real operational systems
-- Keyboard-driven command palette and searchable operator actions
-- Interactive incident simulation and recovery state
-- Clipboard-ready operational status communication
+- semantic HTML and accessible landmarks
+- keyboard-accessible navigation
+- responsive command-center and mobile layouts
+- status language that does not depend on color alone
+- reusable CSS variables and layout primitives
+- no framework or runtime dependency
+- no analytics or cookies
+- synthetic data clearly separated from real operational systems
+
+## Related work
+
+- [Windows IT Toolkit / SchunkOps](https://github.com/dschunk/windows-it-toolkit) — operational evidence and Windows administration tooling
+- [SchunkOps Microsoft 365](https://github.com/dschunk/microsoft-365-ops) — read-only Microsoft 365 support and tenant engineering tools
+- [Build It Like You Won't Be There Tomorrow](https://github.com/dschunk/build-it-like-you-wont-be-there) — runbook, monitoring, recovery, change, and handoff standards
+- [Everyday IT Tips](https://everydayittips.com/) — practical infrastructure and Windows field guides
+- [DavidSchunk.com](https://www.davidschunk.com/) — broader portfolio
