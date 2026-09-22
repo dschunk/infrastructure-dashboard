@@ -1,51 +1,77 @@
+<p align="center">
+  <img src="assets/infrastructure-dashboard-banner.svg" alt="Infrastructure Dashboard — operations interface case study" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://dschunk.github.io/infrastructure-dashboard/"><img src="https://img.shields.io/badge/Live%20Demo-Open-245343?style=for-the-badge" alt="Live demo" /></a>
+  <a href="https://github.com/dschunk/infrastructure-dashboard/actions/workflows/validate.yml"><img src="https://github.com/dschunk/infrastructure-dashboard/actions/workflows/validate.yml/badge.svg" alt="Validation" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-1f2937.svg" alt="MIT License" /></a>
+</p>
+
 # Infrastructure Dashboard
 
-> **Personal project notice:** This is a personal, sanitized demonstration project and is not affiliated with, sponsored by, or endorsed by any current or former employer. The repository is intended to contain only fictional/synthetic data and reusable interface ideas—not employer confidential or proprietary information, production configurations, customer data, credentials, or employer work product.
+A dependency-free operations-interface case study showing how **health, degraded state, incidents, backups, events, tickets, messages, and audit history** can be presented without turning an operations screen into a wall of decorative green boxes.
 
-**Live demo:** https://dschunk.github.io/infrastructure-dashboard/
+Every value is synthetic. The engineering ideas are real.
 
-A public operations-interface case study showing how server health, service status, Windows events, storage, backups, tickets, messages, incidents, and audit history can be presented without turning the screen into a wall of meaningless green boxes.
+> **Design principle:** status should communicate verified state, uncertainty, ownership, and what an operator should care about next.
 
-## What this demonstrates
+## Why this project exists
 
-The repository contains a dependency-free responsive front end built with semantic HTML, modern CSS, and vanilla JavaScript. Every operational value is fictional and exists only to demonstrate information architecture and interface design.
+Operations interfaces are often treated as decoration after the underlying systems are built. That is backwards.
 
-The demo includes:
+A useful operations surface should help answer:
+
+- What is healthy?
+- What is degraded?
+- What is unknown?
+- What changed?
+- Who owns the issue?
+- When was the state last verified?
+- Is the backup only “successful,” or is it actually restorable?
+- What should an operator investigate first?
+- Which actions are observational and which are consequential?
+
+This project explores those questions with a public, sanitized front end.
+
+## What the demo includes
 
 - host and service health
 - storage and backup state
 - Windows event triage
 - managed-system status
+- incident lifecycle and recovery state
 - operational audit history
+- tickets and staff messages
 - responsive desktop/mobile layouts
+- keyboard-accessible navigation
 - an accessible command palette with `Ctrl+K`
 - searchable quick actions
-- simulated incident lifecycle and recovery state
 - clipboard-ready status summaries
-- deliberate degraded-state communication
+- deliberate degraded and unknown states
 
-Open the live demo or run `index.html` locally. No build step is required.
+**[Open the live demo →](https://dschunk.github.io/infrastructure-dashboard/)**
+
+## What to study
+
+| Audience | Look at | Why |
+|---|---|---|
+| **IT / infrastructure engineer** | Health, incidents, backups, audit history | See how operational state can be summarized without hiding uncertainty |
+| **Help desk / NOC** | Degraded-state communication, timestamps, ownership | Practice deciding what deserves escalation |
+| **UI / product designer** | Hierarchy, keyboard access, status semantics | Study an operations UI where color is not the only signal |
+| **Security / platform engineer** | Read-vs-change separation, synthetic data | Discuss safe public demonstrations and consequential-action boundaries |
+| **Instructor / professor** | Whole case study | Use it for observability, operations design, accessibility, or incident-communication discussion |
 
 ## Design rules
 
-- **Status must mean something.** A green card should represent a verified condition, not decoration.
+- **Status must mean something.** Green should represent a verified condition, not decoration.
 - **Failure must be visible.** Degraded and unknown states deserve first-class presentation.
 - **Operators need context.** Ownership, timestamps, last-known state, and audit history matter as much as the headline metric.
-- **Do not rely on color alone.** Status language, icons, labels, and hierarchy should remain understandable without color perception.
-- **Read and change are different operations.** Visibility should not imply permission to perform consequential actions.
+- **Do not rely on color alone.** Labels, language, icons, and hierarchy should remain understandable without color perception.
+- **Read and change are different operations.** Visibility should not imply authorization to perform consequential actions.
 - **Synthetic means synthetic.** Public demonstrations should never leak real infrastructure details just to look authentic.
 
-## Case-study scope
-
-- Windows host connectivity, health, disk, and uptime
-- multi-instance service state
-- events and process visibility
-- storage and backup state
-- internal tickets and staff messages
-- role-aware operational concepts
-- administrative audit history
-
-The conceptual production architecture that inspired the case study looks like this:
+## Conceptual production architecture
 
 ```mermaid
 flowchart TD
@@ -58,9 +84,34 @@ flowchart TD
     W --> L[Audit trail]
 ```
 
-This public repository contains **no** production source, credentials, addresses, hostnames, server keys, webhooks, private infrastructure diagrams, or real telemetry.
+A production implementation should keep read operations separate from administrative actions. Consequential operations should require explicit authorization and audit records; remote management should use constrained identities; secrets should be injected at runtime rather than stored in source.
 
-A production implementation should keep read operations separate from administrative actions. Consequential operations require explicit authorization and audit records; remote management should use constrained identities; secrets should be injected at runtime rather than stored in source.
+## Classroom / discussion use
+
+This repo works well as a case study because students can discuss operational behavior without needing access to real infrastructure.
+
+Useful prompts:
+
+1. Which cards represent facts, and which represent interpretations?
+2. How should the interface distinguish **unknown** from **healthy**?
+3. What context should accompany a backup-success indicator?
+4. Which actions should require elevated authorization?
+5. What audit information should exist after an administrative action?
+6. How can the design remain understandable without relying on green/red color?
+7. What would you remove before showing this interface publicly if it were connected to a real environment?
+
+See the broader [Teaching & Classroom Guide](https://github.com/dschunk/dschunk/blob/main/docs/CLASSROOM.md).
+
+## Run locally
+
+No build step is required.
+
+```text
+clone repository
+open index.html
+```
+
+The project is plain semantic HTML, CSS, and JavaScript.
 
 ## Front-end qualities
 
@@ -73,10 +124,16 @@ A production implementation should keep read operations separate from administra
 - no analytics or cookies
 - synthetic data clearly separated from real operational systems
 
+## Public-project boundary
+
+This repository contains **no production source, credentials, addresses, hostnames, server keys, webhooks, private infrastructure diagrams, employer material, or real telemetry**.
+
+It is a personal, sanitized demonstration project and is not affiliated with, sponsored by, or endorsed by any current or former employer.
+
 ## Related work
 
-- [Windows IT Toolkit / SchunkOps](https://github.com/dschunk/windows-it-toolkit) — operational evidence and Windows administration tooling
-- [SchunkOps Microsoft 365](https://github.com/dschunk/microsoft-365-ops) — read-only Microsoft 365 support and tenant engineering tools
+- [Windows IT Toolkit / SchunkOps](https://github.com/dschunk/windows-it-toolkit) — Windows operations and incident evidence
+- [SchunkOps Microsoft 365](https://github.com/dschunk/microsoft-365-ops) — read-only Microsoft 365 and tenant engineering tooling
 - [Build It Like You Won't Be There Tomorrow](https://github.com/dschunk/build-it-like-you-wont-be-there) — runbook, monitoring, recovery, change, and handoff standards
 - [Everyday IT Tips](https://everydayittips.com/) — practical infrastructure and Windows field guides
 - [DavidSchunk.com](https://www.davidschunk.com/) — broader portfolio
